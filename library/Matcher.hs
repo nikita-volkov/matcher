@@ -5,6 +5,7 @@ module Matcher
   equals,
   satisfies,
   converts,
+  whatever,
 )
 where
 
@@ -96,3 +97,13 @@ converts match =
   Matcher $
   ReaderT $
   either Success.Pure.failure Success.Pure.success . match
+
+-- |
+-- The matcher, which is always satisfied.
+{-# INLINE whatever #-}
+whatever :: Matcher a ()
+whatever =
+  Matcher $
+  ReaderT $
+  const $
+  pure ()
