@@ -1,13 +1,13 @@
 name:
   matcher
 version:
-  0.1.1.1
+  0.1.1.2
 synopsis:
   A composable abstraction for checking or converting a context value
 homepage:
-  https://github.com/nikita-volkov/matcher
+  https://github.com/sannsyn/matcher
 bug-reports:
-  https://github.com/nikita-volkov/matcher/issues
+  https://github.com/sannsyn/matcher/issues
 author:
   Nikita Volkov <nikita.y.volkov@mail.ru>
 maintainer:
@@ -28,7 +28,7 @@ source-repository head
   type:
     git
   location:
-    git://github.com/nikita-volkov/matcher.git
+    git://github.com/sannsyn/matcher.git
 
 
 library
