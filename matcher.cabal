@@ -1,7 +1,7 @@
 name:
   matcher
 version:
-  0.1.1.2
+  0.1.1.3
 synopsis:
   A composable abstraction for checking or converting a context value
 homepage:
@@ -49,5 +49,6 @@ library
     success >= 0.2.6 && < 0.3,
     profunctors >= 5.2 && < 6,
     transformers >= 0.3 && < 0.6,
-    base-prelude < 2
+    base-prelude < 2,
+    base >= 4.7 && < 5
 

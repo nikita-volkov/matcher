@@ -4,9 +4,13 @@ module Matcher.Prelude
 )
 where
 
+-- base
+-------------------------
+import Control.Arrow as Exports
+
 -- base-prelude
 -------------------------
-import BasePrelude as Exports
+import BasePrelude as Exports hiding (first, second)
 
 -- transformers
 -------------------------
