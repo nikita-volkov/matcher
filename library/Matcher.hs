@@ -16,6 +16,7 @@ import qualified Success.Pure
 -- |
 -- Converts the matcher into a conversion function,
 -- which results in either a successful result or a failure.
+{-# INLINABLE run #-}
 run :: Matcher a b -> a -> Either Text b
 run (Matcher (ReaderT successFn)) input =
   either (Left . fromMaybe "") Right $
@@ -55,7 +56,7 @@ instance Arrow Matcher where
     Matcher $
     ReaderT $
     Success.Pure.success . f
-  {-# INLINABLE first #-}
+  {-# INLINE first #-}
   first (Matcher (ReaderT successFn)) =
     Matcher $
     ReaderT $
@@ -66,7 +67,7 @@ instance Arrow Matcher where
 
 -- |
 -- Tests the matched value on equality with the provided value.
-{-# INLINABLE equals #-}
+{-# INLINE equals #-}
 equals :: Eq a => a -> Matcher a ()
 equals reference =
   Matcher $
@@ -78,7 +79,7 @@ equals reference =
 
 -- |
 -- Checks whether the matched value satisfies the provided predicate.
-{-# INLINABLE satisfies #-}
+{-# INLINE satisfies #-}
 satisfies :: (a -> Bool) -> Matcher a ()
 satisfies predicate =
   Matcher $
@@ -91,7 +92,7 @@ satisfies predicate =
 -- |
 -- Tries to convert the matched value to an output value,
 -- with 'Either' encoding the success or failure of the conversion.
-{-# INLINABLE converts #-}
+{-# INLINE converts #-}
 converts :: (a -> Either Text b) -> Matcher a b
 converts match =
   Matcher $
