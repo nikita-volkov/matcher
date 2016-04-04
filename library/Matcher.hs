@@ -19,6 +19,7 @@ import qualified Success.Pure
 {-# INLINABLE run #-}
 run :: Matcher a b -> a -> Either Text b
 run (Matcher (ReaderT successFn)) input =
+  {-# SCC "run" #-} 
   either (Left . fromMaybe "") Right $
   Success.Pure.asEither $
   successFn input
@@ -70,6 +71,7 @@ instance Arrow Matcher where
 {-# INLINE equals #-}
 equals :: Eq a => a -> Matcher a ()
 equals reference =
+  {-# SCC "equals" #-} 
   Matcher $
   ReaderT $
   \input ->
@@ -82,6 +84,7 @@ equals reference =
 {-# INLINE satisfies #-}
 satisfies :: (a -> Bool) -> Matcher a ()
 satisfies predicate =
+  {-# SCC "satisfies" #-} 
   Matcher $
   ReaderT $
   \input ->
@@ -95,6 +98,7 @@ satisfies predicate =
 {-# INLINE converts #-}
 converts :: (a -> Either Text b) -> Matcher a b
 converts match =
+  {-# SCC "converts" #-} 
   Matcher $
   ReaderT $
   either Success.Pure.failure Success.Pure.success . match
@@ -104,6 +108,7 @@ converts match =
 {-# INLINE whatever #-}
 whatever :: Matcher a ()
 whatever =
+  {-# SCC "whatever" #-} 
   Matcher $
   ReaderT $
   const $
